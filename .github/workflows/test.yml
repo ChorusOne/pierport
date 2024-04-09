@@ -1,0 +1,22 @@
+name: Build pierport and test it
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  docker-tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+      - name: Cache pierpot_vere_cache
+        uses: actions/cache@v3
+        with:
+          key: vere-cache
+          path: pierport_vere_cache
+      - run: docker build . -t pierport
+      - run: sh scripts/test.sh

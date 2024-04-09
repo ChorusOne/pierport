@@ -1,0 +1,767 @@
+{
+  "versions": {
+    "0122a610d508277a5ba0c1fe03b01b36a8d58a94e3152bc01d2652a33de113ba": {
+      "inner": {
+        "version": "3.0",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 156117370
+    },
+    "09081f1521e75fce5d30b91400ca490ecf2c0c014dd1568d37d94b1626642f38": {
+      "inner": {
+        "version": "3.0",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 156117363
+    },
+    "0952b17b7cfdfc48f4abcea3a1f2d8b12dcbdba2467a1f9040097fc74a832d9c": {
+      "inner": {
+        "version": "1.17",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 92209293
+    },
+    "097d74a36fc73f0b32b327168b5aaf4158503a299236a15310490264b62d44ab": {
+      "inner": {
+        "version": "2.11",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 115673853
+    },
+    "0d59aac27a5f52b19ace4c6ae46ea85b72da9a6a097d8ff46b0ba2343cd5a5ca": {
+      "inner": {
+        "version": "2.7",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 110493606
+    },
+    "11d2a718edd35159f0be53af07dcb292e207acd8f672c4f698d689946a362b9f": {
+      "inner": {
+        "version": "2.1",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 101347131
+    },
+    "128d5f2dba6d4537e8e4821ac56e0d6e9dfd44df3525d7e3ffc729ab9f422aa1": {
+      "inner": {
+        "version": "2.3",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 106731250
+    },
+    "16d0824614c57be67214b6cbe101d8ced100d14d9684c91a43b94a3518871885": {
+      "inner": {
+        "version": "2.4",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 107695886
+    },
+    "17c85041ff3382fee0fc204d2d412d22c2f240e26edad40319c85ecad04a194b": {
+      "inner": {
+        "version": "1.20",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 95638669
+    },
+    "188705cf4a9cf467b0d471b1f5dc871fcf0f07f92f1038d00135281772485541": {
+      "inner": {
+        "version": "1.21",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 96560938
+    },
+    "18fb2532440faac02f05c9b4615e7364cf516dab72d377ca9af68871947b24de": {
+      "inner": {
+        "version": "1.20",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 95638671
+    },
+    "1d444775c47cc5d2ea6cc666b46a1ed206536a30a2afcdadabf29ad303bf9827": {
+      "inner": {
+        "version": "1.21",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 96560944
+    },
+    "23aa5bf1fabb80b4721a84cf679a28ab6ffccccb97a20b4cd198c3c8cd962d7f": {
+      "inner": {
+        "version": "2.6",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 108612755
+    },
+    "28d02eea8188001c22b86377d22baf1137308a70f4cc03f7742cd9f52d047059": {
+      "inner": {
+        "version": "1.16",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 91481401
+    },
+    "2afc3b8d86b9239c23da3b8f08e2c9931c98849d517097dcaf8a0ee970341369": {
+      "inner": {
+        "version": "1.22",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 97476127
+    },
+    "30f0dbc32da87371ba613452e79825c4f1fb0f649887d22229386594559dce92": {
+      "inner": {
+        "version": "1.19",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 94674482
+    },
+    "33b20a10b14d434e15f10235d35537ae6c541eb5c44eb411f1c23054a847f729": {
+      "inner": {
+        "version": "1.22",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 97476120
+    },
+    "3457ccf039cce16d611b4b47db358267665b823bf351c9146a7a250d8e97da94": {
+      "inner": {
+        "version": "2.8",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 111039668
+    },
+    "34ecdf43bd5c42b2bd3900a09a86a8e61491256c42f205a3cdc0021ec5d4f8b4": {
+      "inner": {
+        "version": "2.4",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 107695859
+    },
+    "34ff7a95bc2426fee1cdfb790c95e2b8b8cf6703e184a50b8796dc37923c2098": {
+      "inner": {
+        "version": "1.17",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 92209288
+    },
+    "3547341bbad054b8a30b42d30cce12ed3bf186ae7be1ad8abc68bc0292ef907e": {
+      "inner": {
+        "version": "2.9",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 111883461
+    },
+    "36ce5b8e9466d21daa06afc45a37eae8b906fd8304cfce40511dcf5d9f550d41": {
+      "inner": {
+        "version": "2.6",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 108612784
+    },
+    "3827b51a96b7ab1d0fd665a650a3207085c8288aaa806d82f5e6a216c11a6d80": {
+      "inner": {
+        "version": "2.4",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 107695875
+    },
+    "4393251a6d6b41cd5cbcbd8e562f18f8955bf3d63f5f876e3e6523f22cd5182b": {
+      "inner": {
+        "version": "2.3",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 106731255
+    },
+    "455c8046242a329b9a5f66bef2fbd92b2f643c0dfbd83b5d432e5af1d2b7da94": {
+      "inner": {
+        "version": "2.2",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 106469458
+    },
+    "4baa68b547adaefc251ac41f62d1ef77467c0c379577748a9ee6c7a17979226c": {
+      "inner": {
+        "version": "2.0",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 100342383
+    },
+    "4e2dd61696cb5b9ce49d90023a27af9d6954170bc40c27030614fc15b6cb300f": {
+      "inner": {
+        "version": "2.5",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 107860249
+    },
+    "4f98ea6a0d495083a3a1a0a7808dc5906b680a606ce2d75572acc1570d614b3c": {
+      "inner": {
+        "version": "2.7",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 110493599
+    },
+    "5304df8bf7b05383df34d5f78b1c6860cb888dc1471cb89d6f7ec6178bb9c65b": {
+      "inner": {
+        "version": "2.0",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 100342377
+    },
+    "53c3e95131471b5b19b16c7c70480fb49ac622fd446d07a081702613416ec548": {
+      "inner": {
+        "version": "1.16",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 91481404
+    },
+    "5415fd89895202b662aa3ce6161ac66b52a03913f4aba90e097d1ba871dc291b": {
+      "inner": {
+        "version": "3.0",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 156117372
+    },
+    "567dbd6dde56e65415cb7b34b18da10eade8bf250f5ff3853f221ac602912f73": {
+      "inner": {
+        "version": "2.6",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 108612761
+    },
+    "56986210fbaefcb60cd61cac6871424dfee2638c3aa40cfe678ca32fb2e22333": {
+      "inner": {
+        "version": "1.19",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 94673543
+    },
+    "58f5e5cef1f5f0b6077c0bcc0f59feac845fb2cf0f5171395557cebbe55c5899": {
+      "inner": {
+        "version": "2.2",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 106469456
+    },
+    "58fe7e232ac5583a95487e16d0822752487c5b2d5e107abf1c92a6e882393248": {
+      "inner": {
+        "version": "1.18",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 93761248
+    },
+    "593871a693f8f9e5055e4fdc87d6fe0feb3dc8326a14a46fabd604c83c93cfcd": {
+      "inner": {
+        "version": "1.18",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 93761251
+    },
+    "5c5df89fe2e0e965b7e077f870cc9ebf29c990dccb3ec4dfbf6d42bbd4452e30": {
+      "inner": {
+        "version": "2.10",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 114580157
+    },
+    "5dc7364cbd9e03bd2ce68ae01b28b7c3365f176c282ae59db17e2849d8f2a2b0": {
+      "inner": {
+        "version": "2.5",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 107860246
+    },
+    "5f48c5e576847db68fc97db9ff0b0bb8a826882ba2b90a25a5649c82dacbd693": {
+      "inner": {
+        "version": "2.0",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 100342378
+    },
+    "609833af917729d66fded790245e4354494aec89ee55d8295d3b668e4b63ba60": {
+      "inner": {
+        "version": "2.11",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 115673862
+    },
+    "66067f2cf23ddd279424f769282a9ec3ebfb8622e80c03aa5b64a7b4e415e182": {
+      "inner": {
+        "version": "2.1",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 101347134
+    },
+    "6b9318054648528c2efdf6bdf5f32c6d28ceec19b37c961079d64c7036ac191a": {
+      "inner": {
+        "version": "2.12",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 126569666
+    },
+    "6e37b44010119055d2d3506665b322cc75648d282c7950a0484cd3947a7a7596": {
+      "inner": {
+        "version": "1.18",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 93761244
+    },
+    "6ead05f1132f36289d77e33650e9a979454d52661c2e9368b1158436321a9ed5": {
+      "inner": {
+        "version": "2.11",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 115673866
+    },
+    "77ead425469cecca77b3d60820b424ccf4c4e3a1ccfb0c55415f5a6218c01402": {
+      "inner": {
+        "version": "1.18",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 93760876
+    },
+    "79d9411a498e8df3a592a90a57b82435f71eb586c38b62916cccc41201278c3f": {
+      "inner": {
+        "version": "2.1",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 101347142
+    },
+    "79ebc5e7aeacd4fdf2fad5537108fda89e1d6963f08c3c57913bd2ad527874a4": {
+      "inner": {
+        "version": "1.16",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 91481407
+    },
+    "7c852a3b48350a2fdea6a57e87364e7978cb78b375cc0cde1cbac4e7557a5fd3": {
+      "inner": {
+        "version": "2.9",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 111883454
+    },
+    "7d30751393a2a47a00ed7c6eeafb07ade6f00ff5480d141f5ba78e76a1915cda": {
+      "inner": {
+        "version": "2.9",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 111883437
+    },
+    "7d40a6d6e20b29c2d29427a61caf7287d1a7d17cbd536525fcf8d79015f28394": {
+      "inner": {
+        "version": "1.21",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 96560935
+    },
+    "7d8c66d2220990e6c9391e36d28811f50cfe3aba230945988b5df2786d1fdf57": {
+      "inner": {
+        "version": "2.1",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 101347140
+    },
+    "7f3278775231d567e1398fe4eb55dfa98418b06cd648087dbcfe75050df75832": {
+      "inner": {
+        "version": "2.12",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 126636479
+    },
+    "84b1f49bd052eb204990e4ebf8a9da4957e9f9a66e58d3fafd17bb80a35b3ea7": {
+      "inner": {
+        "version": "1.21",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 96560947
+    },
+    "86642f390f75c632b68a51859c925df1ed518f1e8ea70ab6419c47b4e30c907d": {
+      "inner": {
+        "version": "2.5",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 107860240
+    },
+    "878716dfa019f5d885c4aca6368cf0e9bcc342f74e8f6a885804b6d27ea4d77f": {
+      "inner": {
+        "version": "1.19",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 94672522
+    },
+    "87c19acdd511c8a53ad21b3a27ebf2498277f49ded265d05f2ec8cfb2e9da0ae": {
+      "inner": {
+        "version": "1.16",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 91481394
+    },
+    "8ae15a146aef1dca35641e18e95298b83aa68c22e2deafc43b7739f9fbd537b8": {
+      "inner": {
+        "version": "2.10",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 114580124
+    },
+    "8b0136edd4c2d5ec16797d3a778df72ac945a10bd3bb8e4a89b090c73a16ac66": {
+      "inner": {
+        "version": "2.7",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 110493609
+    },
+    "925e7b0ecf86a029867f18316f4ef758acdc2c40886847856f95a9a4d8217385": {
+      "inner": {
+        "version": "2.4",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 107695884
+    },
+    "92a8af2f38ee65f624de296bb5bb2bfe19c8c2adb3f406fbaffd71731411d19f": {
+      "inner": {
+        "version": "2.8",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 111039662
+    },
+    "9cbaf1f32324cdd328978922fdf7ba822c76000bdc90669dca7928194ffe4a72": {
+      "inner": {
+        "version": "2.12",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 126569671
+    },
+    "9e3212322dafc2105bfdb9f3b2d640830f2e7a0408f8df3458eb44a67e62a6c4": {
+      "inner": {
+        "version": "1.22",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 97476169
+    },
+    "a7ad150393fc1b34dde9925e884e055e3a2b48c8b6407cc1bb1d689962b6d140": {
+      "inner": {
+        "version": "2.6",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 108612750
+    },
+    "ab6295abac185281dcabe4aa28246a89c7c2e3241ad9b27c0958243d2c888634": {
+      "inner": {
+        "version": "2.3",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 106731259
+    },
+    "ac1a969a5c18241153233563ba843dc5dda99b4db3c6f7060c23e464ee16c62f": {
+      "inner": {
+        "version": "2.2",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 106469449
+    },
+    "afc968d7c36a536f39ac318e6f60f6c4708e423657247fbf0b9b49a9dbb00a63": {
+      "inner": {
+        "version": "2.12",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 126569672
+    },
+    "bcf5cb4058da9ef998ca654b612def5e981430516e1ffbc5f6d9d2dfc9e800ba": {
+      "inner": {
+        "version": "2.3",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 106731247
+    },
+    "bda53de579bd066020879539680a2999749c2813464a1f8cf0cca2ed52aa77f7": {
+      "inner": {
+        "version": "1.22",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 97476161
+    },
+    "c0b1257772dc6e9ba348cf563b376b9eea5ef7f6be9cf71176ce07dbed5d1821": {
+      "inner": {
+        "version": "2.2",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 106469452
+    },
+    "c5613b72cde6bd82144de20e12c7f42c50624b8655842dbb96d327f5010f4269": {
+      "inner": {
+        "version": "2.7",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 110493593
+    },
+    "c7e5267430a02c1cbe92a9ea74c2153743dc32abf28d3671bab2f26537dffcbc": {
+      "inner": {
+        "version": "2.9",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 111883458
+    },
+    "cba5b1e6345d0fd0e2c8dbd0e3965d69da3c65368a771d5f305935e5e22ec4e6": {
+      "inner": {
+        "version": "2.10",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 114580186
+    },
+    "d2494f1b177f4d9318a668b9981701dbb8ac0aa56ff14356a385e58fe2d1c481": {
+      "inner": {
+        "version": "1.17",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 92209317
+    },
+    "e188967ddf74c20202d92a3d5c912c90eaf563695372702557a5dc086f42943f": {
+      "inner": {
+        "version": "1.20",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 95638665
+    },
+    "e48341353b0076083f3b1c7dfab8a6519c5c48e8307ffc915508f36f4df43fd8": {
+      "inner": {
+        "version": "2.8",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 111039664
+    },
+    "e5471b701b10faa62e6425ad391d91d7a11f1128a2230609b7a22a1ca8b8a38b": {
+      "inner": {
+        "version": "2.0",
+        "os": "macos",
+        "arch": "aarch64"
+      },
+      "asset": 100342381
+    },
+    "e987abe97f302c478e5c0fe55368910e42f983177276c8fbaa2975488dc2be80": {
+      "inner": {
+        "version": "2.10",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 114580190
+    },
+    "eaf2af38f7709255e81da5694de07f9e983b8e8df4b46497350a996915640b9a": {
+      "inner": {
+        "version": "1.17",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 92209301
+    },
+    "ec222cd3c647f3bee96d20d86b23ad16e234f73ca50747949ef4c96e9e881a39": {
+      "inner": {
+        "version": "1.20",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 95638679
+    },
+    "ee4602a81de0b067dabfb2b5c3f097dd0e38fcdb1dee38bf8db93e533b06e5f8": {
+      "inner": {
+        "version": "2.5",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 107860235
+    },
+    "f2932c93cc0c8346c4a247af0ff61b280aa2fb1b4e426a19a8a4f609a3a78f3d": {
+      "inner": {
+        "version": "1.19",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 94672506
+    },
+    "f55184d95357dbcd965c8818c56821820232c73c71e89f5a2b6e444a9c82af58": {
+      "inner": {
+        "version": "2.8",
+        "os": "macos",
+        "arch": "x86_64"
+      },
+      "asset": 111039671
+    },
+    "f9d6261b00297ebfd70342218caa024b7917840641463b5f238638de4d9f9fa5": {
+      "inner": {
+        "version": "2.11",
+        "os": "linux",
+        "arch": "x86_64"
+      },
+      "asset": 115673859
+    },
+    "fc65e13c9205f2cde339e4942f825b99e1bf91c03579ec18d0e1e65e2bf75688": {
+      "inner": {
+        "version": "3.0",
+        "os": "linux",
+        "arch": "aarch64"
+      },
+      "asset": 156117360
+    }
+  },
+  "latest_release": 145887790,
+  "processed_assets": [
+    91481394,
+    91481401,
+    91481404,
+    91481407,
+    92209288,
+    92209293,
+    92209301,
+    92209317,
+    93760876,
+    93761244,
+    93761248,
+    93761251,
+    94672506,
+    94672522,
+    94673543,
+    94674482,
+    95638665,
+    95638669,
+    95638671,
+    95638679,
+    96560935,
+    96560938,
+    96560944,
+    96560947,
+    97476120,
+    97476127,
+    97476161,
+    97476169,
+    100342377,
+    100342378,
+    100342381,
+    100342383,
+    101347131,
+    101347134,
+    101347140,
+    101347142,
+    106469449,
+    106469452,
+    106469456,
+    106469458,
+    106731247,
+    106731250,
+    106731255,
+    106731259,
+    107695859,
+    107695875,
+    107695884,
+    107695886,
+    107860235,
+    107860240,
+    107860246,
+    107860249,
+    108612750,
+    108612755,
+    108612761,
+    108612784,
+    110493593,
+    110493599,
+    110493606,
+    110493609,
+    111039662,
+    111039664,
+    111039668,
+    111039671,
+    111883437,
+    111883454,
+    111883458,
+    111883461,
+    114580124,
+    114580157,
+    114580186,
+    114580190,
+    115673853,
+    115673859,
+    115673862,
+    115673866,
+    126569666,
+    126569671,
+    126569672,
+    126636479,
+    156117360,
+    156117363,
+    156117370,
+    156117372
+  ],
+  "update_time": {
+    "secs_since_epoch": 1712916239,
+    "nanos_since_epoch": 855095720
+  }
+}
