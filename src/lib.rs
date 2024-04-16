@@ -66,6 +66,13 @@ pub enum ImportStatus {
     Importing { status: Option<String> },
 }
 
+/// Describes the capabilities exposed by the given pierport implementation.
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+pub struct ImportCapabilities {
+    pub info: Vec<String>,
+    pub extensions: Vec<String>,
+}
+
 /// Crate-wide error type.
 ///
 /// FIXME: this is a bit of a hack to simply wrap anyhow error, and we should split this into more
@@ -236,7 +243,7 @@ impl<T: AsRef<Path>> StandardUnpack<T> {
 impl<T: AsRef<Path>> Drop for StandardUnpack<T> {
     fn drop(&mut self) {
         let path = self.path.as_ref();
-        debug!("Drop {path:?}");
+        trace!("Drop {path:?}");
         if path.exists() {
             if let Err(e) = std::fs::remove_dir_all(path) {
                 error!("StandardUnpack: unable to remove dir ({e:?})");
@@ -654,7 +661,7 @@ impl VersionDb {
                     return Err(anyhow!("Error downloading vere: {}", response.status()).into());
                 };
                 url = location.to_str()?.to_string();
-                debug!("Redirect to {url}");
+                trace!("Redirect to {url}");
             } else {
                 break Ok(hyper::body::to_bytes(response.into_body()).await?.to_vec());
             }
@@ -927,8 +934,8 @@ fn is_vere(in_path: &Path) -> (bool, bool) {
     is_path(in_path, Path::new(".run"))
 }
 
-fn is_allowed_file(in_path: &Path) -> (bool, bool) {
-    for f in [".bin/pace", ".run"] {
+fn is_allowed_file(in_path: &Path, prt_extensions: &[impl AsRef<str>]) -> (bool, bool) {
+    for f in [".bin/pace", ".run", ".prt/info.json"] {
         if let Some((false, in_subpath)) = is_subpath(in_path, Path::new(f)) {
             return (true, in_subpath);
         }
@@ -947,6 +954,13 @@ fn is_allowed_file(in_path: &Path) -> (bool, bool) {
         }
     }
 
+    for ext in prt_extensions {
+        if let Some((true, in_subpath)) = is_subpath(in_path, &Path::new(".prt").join(ext.as_ref()))
+        {
+            return (true, in_subpath);
+        }
+    }
+
     (false, false)
 }
 
@@ -954,14 +968,16 @@ fn is_allowed_file(in_path: &Path) -> (bool, bool) {
 pub async fn import_zstd_stream<I: AsyncRead + Send>(
     stream_in: I,
     file_out: &mut (impl AsyncUnpack + ?Sized),
+    prt_extensions: &[impl AsRef<str>],
 ) -> Result<UrbitPier> {
-    import_zstd_stream_with_vere(stream_in, file_out, false).await
+    import_zstd_stream_with_vere(stream_in, file_out, prt_extensions, false).await
 }
 
 /// Filters files on a zstd stream, and outputs them to given function
 pub async fn import_zstd_stream_with_vere<I: AsyncRead + Send>(
     stream_in: I,
     file_out: &mut (impl AsyncUnpack + ?Sized),
+    prt_extensions: &[impl AsRef<str>],
     unpack_vere: bool,
 ) -> Result<UrbitPier> {
     let stream_in = BufReader::new(stream_in);
@@ -975,12 +991,10 @@ pub async fn import_zstd_stream_with_vere<I: AsyncRead + Send>(
 
     let mut pier = UrbitPier::default();
 
-    debug!("IMPORT ZSTD");
-
     while let Some(entry) = entries.next().await {
         let mut entry = entry?;
 
-        debug!("ZSTD {entry:?}");
+        trace!("ZSTD {entry:?}");
 
         if !matches!(
             entry.header().entry_type(),
@@ -989,7 +1003,6 @@ pub async fn import_zstd_stream_with_vere<I: AsyncRead + Send>(
                 | EntryType::GNULongName
                 | EntryType::GNUSparse
         ) {
-            debug!("CONTINUE");
             continue;
         }
 
@@ -998,7 +1011,7 @@ pub async fn import_zstd_stream_with_vere<I: AsyncRead + Send>(
 
         let (is_vere, in_subpath) = is_vere(&path);
 
-        debug!("ZSTD: {path:?} is_vere={is_vere} in_subpath={in_subpath}");
+        trace!("ZSTD: {path:?} is_vere={is_vere} in_subpath={in_subpath}");
 
         if is_vere {
             if subpath_mode.is_some() && Some(in_subpath) != subpath_mode {
@@ -1031,7 +1044,7 @@ pub async fn import_zstd_stream_with_vere<I: AsyncRead + Send>(
             }
         }
 
-        let (is_allowed_file, in_subpath) = is_allowed_file(&path);
+        let (is_allowed_file, in_subpath) = is_allowed_file(&path, prt_extensions);
 
         if is_allowed_file {
             if subpath_mode.is_some() && Some(in_subpath) != subpath_mode {
@@ -1066,6 +1079,7 @@ pub async fn import_zstd_stream_with_vere<I: AsyncRead + Send>(
 pub async fn import_zip_file<I: AsyncRead + AsyncSeek + Send>(
     stream_in: I,
     file_out: &mut (impl AsyncUnpack + ?Sized),
+    prt_extensions: &[impl AsRef<str>],
 ) -> Result<UrbitPier> {
     let mut stream_in = BufReader::new(stream_in);
     let stream_in = pin!(stream_in);
@@ -1121,7 +1135,7 @@ pub async fn import_zip_file<I: AsyncRead + AsyncSeek + Send>(
             }
         }
 
-        let (is_allowed_file, in_subpath) = is_allowed_file(&path);
+        let (is_allowed_file, in_subpath) = is_allowed_file(&path, prt_extensions);
 
         if is_allowed_file {
             if subpath_mode.is_some() && Some(in_subpath) != subpath_mode {

@@ -90,3 +90,20 @@ if [ -n "$PRT_PU_CHOP" ]; then
     echo "chop = $PRT_PU_CHOP" 1>&$fd
 fi
 
+cap_written=0
+
+if [ -n "$PRT_CAP_INFO" ]; then
+    if [ $cap_written = 0 ]; then
+        echo "[capabilities]" 1>&$fd
+        cap_written=1
+    fi
+    echo "info = [$PRT_CAP_INFO]" 1>&$fd
+fi
+
+if [ -n "$PRT_CAP_EXTENSIONS" ]; then
+    if [ $cap_written = 0 ]; then
+        echo "[capabilities]" 1>&$fd
+        cap_written=1
+    fi
+    echo "extensions = [$PRT_CAP_EXTENSIONS]" 1>&$fd
+fi

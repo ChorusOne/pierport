@@ -88,6 +88,8 @@ struct Config {
     session_check_interval_seconds: u64,
     /// How old should completed sessions be before being removed.
     session_remove_time_seconds: u64,
+    /// Describes the capabilities exposed by this.
+    capabilities: ImportCapabilities,
 }
 
 impl Default for Config {
@@ -105,6 +107,7 @@ impl Default for Config {
             post_unpack: PostUnpackCfg::all(),
             session_check_interval_seconds: 60,
             session_remove_time_seconds: 600,
+            capabilities: Default::default(),
         }
     }
 }
@@ -170,8 +173,9 @@ async fn main() -> anyhow::Result<()> {
 
     // TODO: should we include pierport/v1/ here?
     let app = Router::new()
-        .route("/import/~:patp", post(import))
+        .route("/capabilities", get(capabilities))
         .route("/import/~:patp/:id", get(import_status))
+        .route("/import/~:patp", post(import))
         .layer(DefaultBodyLimit::max(config.upload_limit))
         .with_state((config.clone(), jwt_key, sessions));
 
@@ -180,6 +184,15 @@ async fn main() -> anyhow::Result<()> {
         .await?;
 
     Ok(())
+}
+
+/// Check on the exposed import capabilities.
+async fn capabilities(
+    State((config, _, _)): State<(Arc<Config>, Option<Arc<DecodingKey>>, Arc<Sessions>)>,
+) -> axum::response::Result<Json<ImportCapabilities>> {
+    // TODO: we should ensure that the exposed extensions are consistent with downstream
+    // capabilities.
+    Ok(Json(config.capabilities.clone()))
 }
 
 /// Check on the pier import status.
@@ -311,9 +324,17 @@ async fn import(
                     .map_err(Error::from)?;
 
                 // TODO: consider returning 202 before extracting the pier
-                break import_zip_file(temp_file.compat(), &mut pier).await?;
+                break import_zip_file(
+                    temp_file.compat(),
+                    &mut pier,
+                    &config.capabilities.extensions,
+                )
+                .await?;
             }
-            Some("application/zstd") => break import_zstd_stream(stream, &mut pier).await?,
+            Some("application/zstd") => {
+                break import_zstd_stream(stream, &mut pier, &config.capabilities.extensions)
+                    .await?
+            }
             Some("application/json") => {
                 content_type = {
                     let mut data = String::new();
