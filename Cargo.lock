@@ -1429,7 +1429,7 @@ checksum = "e3148f5046208a5d56bcfc03053e3ca6334e51da8dfb19b6cdc8b306fae3283e"
 
 [[package]]
 name = "pierport"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "anyhow",
  "async-compression 0.4.7",
@@ -1441,6 +1441,7 @@ dependencies = [
  "env_logger",
  "flate2",
  "futures",
+ "http",
  "hyper",
  "jobserver",
  "jsonwebtoken",
@@ -1455,6 +1456,8 @@ dependencies = [
  "tokio",
  "tokio-util",
  "toml",
+ "tower",
+ "tower-http",
 ]
 
 [[package]]

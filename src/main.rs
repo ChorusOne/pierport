@@ -28,8 +28,11 @@ use axum::{
     routing::{get, post},
     Router,
 };
+use http::Method;
 use hyper::{Request, Response, StatusCode};
 use reqwest::Client;
+use tower::ServiceBuilder;
+use tower_http::cors::{Any, CorsLayer};
 
 static CS: Lazy<Mutex<()>> = Lazy::new(Default::default);
 
@@ -171,12 +174,21 @@ async fn main() -> anyhow::Result<()> {
         }
     });
 
+    let cors = CorsLayer::very_permissive()
+        .allow_methods([Method::GET, Method::POST])
+        .allow_headers([
+            hyper::header::AUTHORIZATION,
+            hyper::header::CONTENT_LENGTH,
+            header::SIZE,
+        ]);
+
     // TODO: should we include pierport/v1/ here?
     let app = Router::new()
         .route("/capabilities", get(capabilities))
         .route("/import/~:patp/:id", get(import_status))
         .route("/import/~:patp", post(import))
         .layer(DefaultBodyLimit::max(config.upload_limit))
+        .layer(ServiceBuilder::new().layer(cors))
         .with_state((config.clone(), jwt_key, sessions));
 
     axum::Server::bind(&config.bind)
