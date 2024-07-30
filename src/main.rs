@@ -32,7 +32,7 @@ use http::Method;
 use hyper::{Request, Response, StatusCode};
 use reqwest::Client;
 use tower::ServiceBuilder;
-use tower_http::cors::{Any, CorsLayer};
+use tower_http::cors::CorsLayer;
 
 static CS: Lazy<Mutex<()>> = Lazy::new(Default::default);
 
@@ -617,8 +617,8 @@ impl Sessions {
         let mut sessions = self.sessions.lock().await;
         sessions.retain(|_, v| {
             v.retain(|_, v| match &v.result {
-                Ok((_, time)) if time.elapsed() >= stale_time => true,
-                _ => false,
+                Ok((_, time)) if time.elapsed() >= stale_time => false,
+                _ => true,
             });
             !v.is_empty()
         });
