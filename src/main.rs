@@ -84,8 +84,8 @@ struct Config {
     upload_limit: usize,
     /// Cleanup steps to run after the pier has been unpacked.
     ///
-    /// Defaults to all steps, unless there is a section in the config negating it (sufficient to
-    /// declare empty post_unpack section).
+    /// Defaults to all steps, except cram, unless there is a section in the config negating it
+    /// (sufficient to declare empty post_unpack section).
     post_unpack: PostUnpackCfg,
     /// How often should we cleanup complete sessions.
     session_check_interval_seconds: u64,

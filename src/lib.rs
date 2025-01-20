@@ -178,13 +178,15 @@ pub async fn find_files_by_suffix(
 }
 
 /// Actions to be taken after pier is unpacked.
-#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(default)]
 pub struct PostUnpackCfg {
     /// Catch up the event log.
     prep: bool,
     /// Cram and verify that the cram hasn't changed after subsequent steps.
     verify_cram: bool,
+    /// Store snapshot and event log event count, and verify it.
+    verify_events: bool,
     /// Run vere pack.
     pack: bool,
     /// Run vere meld.
@@ -193,10 +195,30 @@ pub struct PostUnpackCfg {
     chop: bool,
 }
 
+impl Default for PostUnpackCfg {
+    fn default() -> Self {
+        Self {
+            prep: true,
+            verify_cram: false,
+            verify_events: true,
+            pack: true,
+            meld: true,
+            chop: true,
+        }
+    }
+}
+
 impl PostUnpackCfg {
     pub fn verify_cram(self, verify_cram: bool) -> Self {
         Self {
             verify_cram,
+            ..self
+        }
+    }
+
+    pub fn verify_events(self, verify_events: bool) -> Self {
+        Self {
+            verify_events,
             ..self
         }
     }
@@ -220,6 +242,7 @@ impl PostUnpackCfg {
     pub fn all() -> Self {
         Self {
             verify_cram: true,
+            verify_events: true,
             prep: true,
             pack: true,
             meld: true,
@@ -228,10 +251,58 @@ impl PostUnpackCfg {
     }
 }
 
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+struct EventCount {
+    snapshot: u64,
+    disk: u64,
+}
+
+impl EventCount {
+    fn from_info_stderr(info: &str) -> anyhow::Result<Self> {
+        let mut lines = info.lines();
+
+        while let Some(line) = lines.next() {
+            let line = line.trim();
+
+            // Parse snapshot event number
+            let Some(line) = line.strip_prefix("urbit: ") else {
+                continue;
+            };
+            let Some((_, line)) = line.split_once("at event ") else {
+                continue;
+            };
+            let Ok(snapshot) = line.parse::<u64>() else {
+                continue;
+            };
+
+            trace!("Parsed snapshot event number: {snapshot}");
+
+            let Some(line) = lines.next() else { continue };
+            let line = line.trim();
+
+            // Parse the disk (event log) event number
+            if !line.contains("disk:") {
+                continue;
+            }
+            let Some((_, line)) = line.split_once("event=") else {
+                continue;
+            };
+            let Ok(disk) = line.parse::<u64>() else {
+                continue;
+            };
+
+            return Ok(Self { snapshot, disk });
+        }
+
+        Err(anyhow!("Could not parse info output"))
+    }
+}
+
 #[derive(Clone)]
 pub struct StandardUnpack<T: AsRef<Path>> {
     path: T,
     loom: Option<usize>,
+    event_count: Option<EventCount>,
 }
 
 impl<T: AsRef<Path>> StandardUnpack<T> {
@@ -269,7 +340,11 @@ impl<T: AsRef<Path>> StandardUnpack<T> {
 
         fs::create_dir_all(path.as_ref()).await?;
 
-        Ok(Self { path, loom })
+        Ok(Self {
+            path,
+            loom,
+            event_count: None,
+        })
     }
 
     pub async fn detect_loom(&mut self) -> Result<Option<usize>> {
@@ -281,7 +356,7 @@ impl<T: AsRef<Path>> StandardUnpack<T> {
         self.loom = loom;
     }
 
-    async fn run_cmd(&mut self, args: &[&str]) -> Result<()> {
+    async fn run_cmd(&mut self, args: &[&str]) -> Result<String> {
         let mut cmd = Command::new("./.run");
 
         cmd.current_dir(&**self).args(args);
@@ -302,7 +377,32 @@ impl<T: AsRef<Path>> StandardUnpack<T> {
             )
             .into())
         } else {
-            Ok(())
+            Ok(String::from_utf8_lossy(&output.stderr).into())
+        }
+    }
+
+    pub async fn store_events(mut self) -> Result<StandardUnpack<T>> {
+        debug!("Pre-work event count");
+        let err = self.run_cmd(&["-R"]).await?;
+        self.event_count = Some(EventCount::from_info_stderr(&err)?);
+        Ok(self)
+    }
+
+    pub async fn verify_events(mut self) -> Result<StandardUnpack<T>> {
+        debug!("Pre-work event count");
+        let err = self.run_cmd(&["-R"]).await?;
+        let event_count = EventCount::from_info_stderr(&err)?;
+        let Some(events) = self.event_count else {
+            return Err(anyhow!(
+                "verify_events called without previous store_events"
+            ).into());
+        };
+        if event_count == events {
+            Ok(self)
+        } else {
+            Err(anyhow!(
+                "Event count mismatch between prev={events:?} and cur={event_count:?}"
+            ).into())
         }
     }
 
@@ -442,6 +542,10 @@ impl<T: AsRef<Path>> StandardUnpack<T> {
             self = self.cram().await?;
         }
 
+        if cfg.verify_events {
+            self = self.store_events().await?;
+        }
+
         if cfg.pack {
             self = self.pack().await?;
         }
@@ -456,6 +560,10 @@ impl<T: AsRef<Path>> StandardUnpack<T> {
 
         if cfg.verify_cram {
             self = self.verify_cram().await?;
+        }
+
+        if cfg.verify_events {
+            self = self.verify_events().await?;
         }
 
         Ok(self)
